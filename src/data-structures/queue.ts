@@ -1,6 +1,5 @@
 type QueueElement<T> = {
   value: T;
-  // previous: QueueElement<T>;
   next: QueueElement<T> | null;
 };
 
