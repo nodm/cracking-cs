@@ -4,7 +4,7 @@
   "description": "Cracking Computer Science :)",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build&& node build/index.js",
+    "start": "npm run build && node build/index.js",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
