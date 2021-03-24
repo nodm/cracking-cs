@@ -1,7 +1,8 @@
+import { SpecHelpers } from '../spec-helpers';
 import { Queue } from './queue';
 
 function createQueue(length?: number): [ queue: Queue<number>, elementList: number[] ] {
-  const queueLength = length || Math.round(Math.random() * 100);
+  const queueLength = length || SpecHelpers.getRandomLength();
   const elementList = new Array(queueLength).fill(0).map(() => Math.round(Math.random() * 100));
   const queue = new Queue<number>();
 
