@@ -1,7 +1,8 @@
 import { SpecHelpers } from '../spec-helpers';
-import { findLongestSequence } from './epam-max-sequence-length';
+import { findLongestSequence, getSortedSequencesMap } from './epam-max-sequence-length';
 
-type Alphabet = '0' | '1';
+// type Alphabet = '0' | '1';
+type Alphabet = string;
 
 describe('Find the length and start index of the longest sequence of a symbol', () => {
   let sequence: Alphabet[];
@@ -63,6 +64,32 @@ describe('Find the length and start index of the longest sequence of a symbol', 
   });
 });
 
+describe('Sort the sequences of symbols', () => {
+  let sequence: Alphabet[];
+
+  afterEach(() => {
+    sequence = [];
+  });
+
+  it('Smoke test of the ordered sequences', () => {
+    sequence = generateSequence();
+    const sortedSequenceMap = getSortedSequencesMap(sequence);
+    const symbol = sequence.includes('1') ? '1' : '0';
+
+    if (!sequence.length) {
+      return expect(true).toEqual(true);
+    }
+
+    const [
+      longestSequenceLength,
+      longestSequenceStartIndex
+    ] = findLongestSequence(sequence,symbol);
+    const { length, startIndex } = sortedSequenceMap.pop() || {};
+
+    expect(length).toEqual(longestSequenceLength);
+    expect(startIndex).toEqual(longestSequenceStartIndex);
+  });
+});
 
 function generateSequence (length?: number): Alphabet[] {
   const dataLength = length || SpecHelpers.getRandomLength();
